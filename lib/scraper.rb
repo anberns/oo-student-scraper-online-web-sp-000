@@ -9,20 +9,31 @@ class Scraper
     students = []
     html = open(index_url)
     doc = Nokogiri::HTML(html)
+<<<<<<< HEAD
     
+=======
+    binding.pry
+>>>>>>> df385ad8dfd93964791e9cee7bbf3f6c1a762a55
     doc.css("div.student-card").each do |student|
       new_student = {
         :name => student.css("h4.student-name").text,
         :location => student.css("p.student-location").text,
+<<<<<<< HEAD
         :profile_url => student.css("a").attribute("href").value
       }
       
+=======
+        :profile_url => student.css("a").text
+      }
+      binding.pry
+>>>>>>> df385ad8dfd93964791e9cee7bbf3f6c1a762a55
       students << new_student
     end
     students
   end
 
   def self.scrape_profile_page(profile_url)
+<<<<<<< HEAD
     aspects = []
     html = open(profile_url)
     doc = Nokogiri::HTML(html)
@@ -47,6 +58,15 @@ class Scraper
     student_hash[:profile_quote] = quote
     student_hash[:bio] = bio
     
+=======
+    student_hash = {}
+    html = open(index_url)
+    doc = Nokogiri::HTML(html)
+    doc.css("div.social-icon-container").each do |aspect|
+      aspects << aspect.css("a").text
+      binding.pry
+    end
+>>>>>>> df385ad8dfd93964791e9cee7bbf3f6c1a762a55
     student_hash
   end
   
